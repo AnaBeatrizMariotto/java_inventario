@@ -3,35 +3,55 @@ import java.util.Scanner;
 
 
 public class ProductTester {
-<<<<<<< HEAD
-=======
-	
->>>>>>> 16136d5 ( commit)
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+		int maxSize;
+		maxSize = getNumProducts(in);
+		
+		if(maxSize == 0) {
+			System.out.println("nenhum produto requerido para ser resgistrado!");
+		} else {
+			Product[] products = new Product[maxSize];
+			addToInventory(products, in);
+			
+			displayInventory(products);
+		}
+		
+		in.close();	
+	}
+	
+	static void displayInventory(Product[] products) {
+		//Exibe os produtos armazenados 
+		for(Product product: products) {
+			System.out.println(product);
+		}
+	}
+	
+	static void addToInventory(Product[] products, Scanner in) {
 		int tempNumber;
 		String tempName;
 		int tempQtd;
 		double tempPrice;
-<<<<<<< HEAD
-		
-		System.out.println("\n\n Digite o nome do produto: ");
-		tempName = in.nextLine();
-		System.out.println("Digite a quantidade do estoque: ");
-		tempQtd = in.nextInt();
-		System.out.println("Digite o preço: ");
-		tempPrice = in.nextDouble();
-		System.out.println("Digite o identificador único: ");
-		tempNumber = in.nextInt();
-		
-		in.close();
-		Product p = new Product(tempNumber,tempName,tempQtd,tempPrice);
-		p.setActive(false);
-		System.out.println(p);		
-=======
+		// armazenar os produtos
+		for(int i = 0; i < products.length; i++) {
+			in.nextLine();
+			System.out.println("\n");
+			System.out.println("Digite o nome do produto: ");
+			tempName = in.nextLine();
+			System.out.println("Digite a quantidade do estoque: ");
+			tempQtd = in.nextInt();
+			System.out.println("Digite o preço: ");
+			tempPrice = in.nextDouble();
+			System.out.println("Digite o identificador único: ");
+			tempNumber = in.nextInt();
+			// criar um objeto produto e amazenar suas propriedades
+			products[i] = new Product(tempNumber,tempName,tempQtd,tempPrice);
+		}
+	}
+	static int getNumProducts(Scanner in) {
 		int maxSize = -1;
-				
+		
 		// avisar o usuário até que ele insira um número >= 0
 		do {
 			try {
@@ -46,37 +66,9 @@ public class ProductTester {
 			  System.out.println(e);
 			  in.nextLine();
 		  }
-		} while (maxSize<0); 
+		} while (maxSize<0);
 		
-		if(maxSize == 0) {
-			System.out.println("nenhum produto requerido para ser resgistrado!");
-		} else {
-			Product[] products = new Product[maxSize];
-			// armazenar os produtos
-			for(int i = 0; i < maxSize; i++) {
-				in.nextLine();
-				System.out.println("\n");
-				System.out.println("Digite o nome do produto: ");
-				tempName = in.nextLine();
-				System.out.println("Digite a quantidade do estoque: ");
-				tempQtd = in.nextInt();
-				System.out.println("Digite o preço: ");
-				tempPrice = in.nextDouble();
-				System.out.println("Digite o identificador único: ");
-				tempNumber = in.nextInt();
-				// criar um objeto produto e amazenar suas propriedades
-				products[i] = new Product(tempNumber,tempName,tempQtd,tempPrice);
-			}
-			
-			//Exibe os produtos armazenados 
-			for(Product product: products) {
-				System.out.println(product);
-			}
-			
-		}
-		
-		in.close();	
->>>>>>> 16136d5 ( commit)
+		return maxSize;
 	}
-
+	
 }
